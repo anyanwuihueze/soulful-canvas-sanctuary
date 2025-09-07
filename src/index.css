@@ -135,7 +135,7 @@
   }
   
   .artwork-card {
-    @apply group relative overflow-hidden rounded-xl bg-card border border-border;
+    @apply relative overflow-hidden rounded-xl bg-card border border-border;
     box-shadow: var(--shadow-sacred);
     transition: var(--transition-sacred);
   }

@@ -45,7 +45,7 @@ const GallerySection = () => {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {artworks.map((artwork) => (
-            <Card key={artwork.id} className="artwork-card">
+            <Card key={artwork.id} className="artwork-card group">
               <div className="relative">
                 <img 
                   src={artwork.image} 

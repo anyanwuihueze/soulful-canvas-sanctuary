@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        space: ['Space Grotesk', 'sans-serif'],
+        playfair: ['Playfair Display', 'serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +61,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Sacred color tokens
+        'gold-glow': "hsl(var(--gold-glow))",
+        'crimson-emotion': "hsl(var(--crimson-emotion))",
+        'indigo-spirit': "hsl(var(--indigo-spirit))",
+        'earth-warm': "hsl(var(--earth-warm))",
+        'earth-deep': "hsl(var(--earth-deep))",
       },
       borderRadius: {
         lg: "var(--radius)",

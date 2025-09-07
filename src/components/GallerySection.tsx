@@ -9,24 +9,24 @@ const GallerySection = () => {
   const artworks = [
     {
       id: 1,
-      title: "Ancestral Wisdom",
-      image: artwork1,
-      emotion: "The weight of stories untold",
-      story: "In his eyes, I carry the dreams of generations. Each line on my face is a map of resilience, each breath a prayer for those who come after me."
+      title: "Vision Through Truth",
+      image: "/lovable-uploads/de9457e8-8b9d-4534-9322-a856502caeb0.png",
+      emotion: "Seeing beyond the surface",
+      story: "Behind these crimson lenses lies a vision that pierces through facades. Every stroke reveals the authentic self beneath society's expectations."
     },
     {
       id: 2,
-      title: "Tomorrow's Promise",
-      image: artwork2,
-      emotion: "Pure hope illuminated",
-      story: "I am the future dancing in present light. My smile holds the power to change the world, my joy is the antidote to yesterday's pain."
+      title: "Eternal Gaze",
+      image: "/lovable-uploads/cb7449cc-b296-417e-bbec-2b3c2fea257e.png",
+      emotion: "The soul's observatory",
+      story: "This fragmented eye sees all dimensions of existence. Each panel captures a different spectrum of human experience, united in divine observation."
     },
     {
       id: 3,
-      title: "Inner Sanctuary",
-      image: artwork3,
-      emotion: "Sacred contemplation",
-      story: "In this moment of stillness, I commune with the divine within. The chaos of the world fades as I find peace in the cathedral of my soul."
+      title: "Joy Unbounded",
+      image: "/lovable-uploads/56c0cb77-547b-48c5-a487-d0c7844b0caf.png",
+      emotion: "Pure euphoria in color",
+      story: "This radiant smile transcends canvas boundaries. Every vibrant hue speaks of hope, resilience, and the beautiful complexity of the human spirit."
     }
   ];
 

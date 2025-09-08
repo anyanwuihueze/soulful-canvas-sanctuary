@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import heroPortrait from '@/assets/hero-portrait.jpg';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
@@ -31,9 +32,12 @@ const HeroSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="default" size="lg" className="btn-sacred relative z-10">
-                <span className="relative z-10">Enter the Gallery</span>
-              </Button>
+              {/* Link wraps the button for client-side navigation */}
+              <Link to="/gallery">
+                <Button variant="default" size="lg" className="btn-sacred relative z-10">
+                  <span className="relative z-10">Explore the Gallery</span>
+                </Button>
+              </Link>
               
               <Button variant="outline" size="lg" className="btn-voice">
                 Sacred Nights Events

@@ -27,9 +27,8 @@ const Footer = () => {
             <h3 className="font-space font-semibold text-foreground">Connect</h3>
             <div className="space-y-3 text-muted-foreground">
               <div>studio@sacredcanvas.art</div>
-              <div>+1 (555) 123-SOUL</div>
-              <div>123 Sacred Street</div>
-              <div>Art District, CA 90210</div>
+              <div>+234 703 612 7047</div>
+              <div>Lekki, Lagos Nigeria</div>
             </div>
           </div>
         </div>

@@ -12,10 +12,11 @@ const Navigation = () => {
   }, []);
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Gallery', href: '#gallery' },
-    { label: 'Sacred Nights', href: '#events' },
-    { label: 'About', href: '#about' },
+    { label: 'Home', href: '/' },
+    { label: 'Gallery', href: '/#gallery' },
+    { label: 'Sacred Nights', href: '/#events' },
+    { label: 'About', href: '/#about' },
+    { label: 'Blog', href: '/blog' },
   ];
 
   return (

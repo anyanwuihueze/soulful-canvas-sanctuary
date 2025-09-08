@@ -5,6 +5,7 @@ const AboutSection = () => {
     <section id="about" className="sacred-section bg-gradient-to-b from-background to-secondary/20">
       <div className="sacred-container">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Section */}
           <div className="space-y-8">
             <div className="space-y-6">
               <h2 className="sacred-title text-left">
@@ -44,19 +45,23 @@ const AboutSection = () => {
             </div>
           </div>
           
+          {/* Right Section */}
           <div className="relative">
             <div className="absolute -inset-8 bg-gradient-to-br from-primary/10 via-accent/10 to-destructive/10 rounded-3xl blur-3xl"></div>
             <div className="relative bg-card border border-border rounded-2xl p-8 space-y-6">
               <div className="text-center space-y-4">
                 <div className="relative group">
+                  {/* Hover glow wrapper */}
                   <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 rounded-full blur-lg group-hover:blur-xl transition-all duration-500"></div>
-                  <div className="relative overflow-hidden rounded-full border-4 border-primary/30 shadow-2xl">
+                  
+                  {/* Fixed Circular framed image */}
+                  <div className="relative w-40 h-40 overflow-hidden rounded-full border-4 border-primary/30 shadow-2xl group-hover:shadow-[0_0_30px_rgba(255,215,0,0.7)] transition-all duration-500 mx-auto">
                     <img 
-                      src="/lovable-uploads/92d5dabf-d20c-4acd-b410-677a490a6211.png"
+                      src="/lovable-uploads/cletus-prof-pic.png"
                       alt="Cletus Zadoc - Artist"
-                      className="w-32 h-32 object-cover transition-transform duration-500 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-accent/20 mix-blend-overlay"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-accent/20 mix-blend-overlay rounded-full"></div>
                   </div>
                 </div>
                 <h3 className="font-playfair text-2xl font-semibold text-foreground">

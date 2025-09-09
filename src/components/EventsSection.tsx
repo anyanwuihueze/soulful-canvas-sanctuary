@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Calendar, Clock, MapPin, Users } from "lucide-react";
+import { Calendar, Clock, MapPin, Users, Mail, Phone, MessageSquare } from "lucide-react";
+import { useState } from "react";
 
 const events = [
   {
@@ -36,13 +37,109 @@ const events = [
 ];
 
 const EventsSection = () => {
+  const [showContactModal, setShowContactModal] = useState<string | null>(null);
+
   const createMailtoLink = (eventTitle: string, isWaitlist: boolean) => {
     const subject = isWaitlist
       ? `Waitlist Request: ${eventTitle}`
       : `Reservation Request: ${eventTitle}`;
     const body = `Hello,\n\nI would like to ${isWaitlist ? 'join the waitlist for' : 'reserve a sacred space at'} the upcoming event: ${eventTitle}.\n\nPlease let me know the next steps.\n\nThank you!`;
-    return `mailto:studio@sacredcanvas.art?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:contactcletuszadoc@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
+
+  const handleContactClick = (eventTitle: string, isWaitlist: boolean) => {
+    // First try mailto
+    const mailtoLink = createMailtoLink(eventTitle, isWaitlist);
+    
+    // Create a temporary link and try to open it
+    const link = document.createElement('a');
+    link.href = mailtoLink;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    
+    try {
+      link.click();
+      // If successful, the mailto opened
+    } catch (error) {
+      // If mailto fails, show alternative contact methods
+      setShowContactModal(eventTitle);
+    }
+    
+    // Clean up
+    document.body.removeChild(link);
+    
+    // For mobile, also show the modal after a short delay in case mailto didn't work
+    setTimeout(() => {
+      setShowContactModal(eventTitle);
+    }, 1000);
+  };
+
+  const copyToClipboard = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      alert('Email address copied to clipboard!');
+    }
+  };
+
+  const ContactModal = ({ eventTitle }: { eventTitle: string }) => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div className="bg-card rounded-2xl max-w-md w-full p-6 space-y-4">
+        <h3 className="text-xl font-playfair font-semibold">Contact Options</h3>
+        <p className="text-sm text-muted-foreground">
+          Choose your preferred way to contact us about: <strong>{eventTitle}</strong>
+        </p>
+        
+        <div className="space-y-3">
+          {/* Email Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => copyToClipboard('contactcletuszadoc@gmail.com')}
+          >
+            <Mail className="w-4 h-4" />
+            <div className="text-left">
+              <div>Email Us</div>
+              <div className="text-xs text-muted-foreground">contactcletuszadoc@gmail.com</div>
+            </div>
+          </Button>
+
+          {/* WhatsApp Option (if applicable) */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => window.open('https://wa.me/2347036127047', '_blank')}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <div className="text-left">
+              <div>WhatsApp</div>
+              <div className="text-xs text-muted-foreground">Quick message</div>
+            </div>
+          </Button>
+
+          {/* Phone Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => window.open('tel:+2347036127047', '_blank')}
+          >
+            <Phone className="w-4 h-4" />
+            <div className="text-left">
+              <div>Call Us</div>
+              <div className="text-xs text-muted-foreground">+234 703 612 7047</div>
+            </div>
+          </Button>
+        </div>
+
+        <Button 
+          variant="secondary" 
+          onClick={() => setShowContactModal(null)}
+          className="w-full mt-4"
+        >
+          Close
+        </Button>
+      </div>
+    </div>
+  );
 
   return (
     <section id="events" className="sacred-section">
@@ -75,13 +172,23 @@ const EventsSection = () => {
               
               <div className="pt-6 mt-auto">
                 {event.status === 'available' ? (
-                  <a href={createMailtoLink(event.title, false)} target="_blank" rel="noopener noreferrer">
-                    <Button variant="default" size="sm" className="w-full">Reserve Your Sacred Space</Button>
-                  </a>
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="w-full min-h-[44px]" // Ensure mobile-friendly touch target
+                    onClick={() => handleContactClick(event.title, false)}
+                  >
+                    Reserve Your Sacred Space
+                  </Button>
                 ) : (
-                  <a href={createMailtoLink(event.title, true)} target="_blank" rel="noopener noreferrer">
-                    <Button variant="outline" size="sm" className="w-full">Join Waitlist</Button>
-                  </a>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="w-full min-h-[44px]" // Ensure mobile-friendly touch target
+                    onClick={() => handleContactClick(event.title, true)}
+                  >
+                    Join Waitlist
+                  </Button>
                 )}
               </div>
             </Card>
@@ -94,6 +201,9 @@ const EventsSection = () => {
           </p>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      {showContactModal && <ContactModal eventTitle={showContactModal} />}
     </section>
   );
 };

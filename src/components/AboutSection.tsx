@@ -1,6 +1,133 @@
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { Mail, Phone, MessageSquare, X } from 'lucide-react';
 
 const AboutSection = () => {
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [modalType, setModalType] = useState<'connect' | 'commission'>('connect');
+
+  const handleConnectClick = () => {
+    setModalType('connect');
+    setShowContactModal(true);
+  };
+
+  const handleCommissionClick = () => {
+    setModalType('commission');
+    setShowContactModal(true);
+  };
+
+  const copyToClipboard = (text: string) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      alert('Contact info copied to clipboard!');
+    }
+  };
+
+  const createMailtoLink = (isCommission: boolean) => {
+    const subject = isCommission 
+      ? 'Sacred Portrait Commission Inquiry'
+      : 'Connect with the Artist - General Inquiry';
+    const body = isCommission
+      ? 'Hello Cletus,\n\nI would like to inquire about commissioning a sacred portrait. Please let me know your availability and process.\n\nThank you!'
+      : 'Hello Cletus,\n\nI would love to connect with you about your art and Sacred Canvas journey.\n\nThank you!';
+    
+    return `mailto:studio@sacredcanvas.art?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  const ContactModal = () => (
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div className="bg-card rounded-2xl max-w-md w-full p-6 space-y-4 relative">
+        <button 
+          onClick={() => setShowContactModal(false)}
+          className="absolute top-4 right-4 p-2 hover:bg-accent/10 rounded-lg transition-colors"
+        >
+          <X className="w-4 h-4" />
+        </button>
+
+        <h3 className="text-xl font-playfair font-semibold pr-8">
+          {modalType === 'connect' ? 'Connect with Cletus' : 'Commission a Sacred Portrait'}
+        </h3>
+        <p className="text-sm text-muted-foreground">
+          {modalType === 'connect' 
+            ? 'Choose your preferred way to connect with the artist'
+            : 'Get in touch about commissioning your own sacred portrait'
+          }
+        </p>
+        
+        <div className="space-y-3">
+          {/* Email Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => {
+              const mailtoLink = createMailtoLink(modalType === 'commission');
+              window.open(mailtoLink);
+            }}
+          >
+            <Mail className="w-4 h-4" />
+            <div className="text-left">
+              <div>Email</div>
+              <div className="text-xs text-muted-foreground">studio@sacredcanvas.art</div>
+            </div>
+          </Button>
+
+          {/* WhatsApp Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => {
+              const message = modalType === 'commission'
+                ? 'Hello Cletus, I would like to inquire about commissioning a sacred portrait.'
+                : 'Hello Cletus, I would love to connect with you about your art.';
+              window.open(`https://wa.me/2347036127047?text=${encodeURIComponent(message)}`, '_blank');
+            }}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <div className="text-left">
+              <div>WhatsApp</div>
+              <div className="text-xs text-muted-foreground">Quick message</div>
+            </div>
+          </Button>
+
+          {/* Phone Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => window.open('tel:+2347036127047', '_blank')}
+          >
+            <Phone className="w-4 h-4" />
+            <div className="text-left">
+              <div>Call</div>
+              <div className="text-xs text-muted-foreground">+234 703 612 7047</div>
+            </div>
+          </Button>
+
+          {/* Facebook Option */}
+          <Button 
+            variant="outline" 
+            className="w-full justify-start gap-3 h-auto py-3"
+            onClick={() => window.open('https://facebook.com/cletus.zadoc', '_blank')}
+          >
+            <MessageSquare className="w-4 h-4" />
+            <div className="text-left">
+              <div>Facebook</div>
+              <div className="text-xs text-muted-foreground">Cletus Zadoc</div>
+            </div>
+          </Button>
+
+          {/* Copy Email Button */}
+          <Button 
+            variant="secondary" 
+            className="w-full"
+            onClick={() => copyToClipboard('studio@sacredcanvas.art')}
+          >
+            Copy Email Address
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section id="about" className="sacred-section bg-gradient-to-b from-background to-secondary/20">
       <div className="sacred-container">
@@ -35,11 +162,21 @@ const AboutSection = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="default" size="lg" className="btn-sacred">
+              <Button 
+                variant="default" 
+                size="lg" 
+                className="btn-sacred min-h-[44px]"
+                onClick={handleConnectClick}
+              >
                 <span className="relative z-10">Connect with the Artist</span>
               </Button>
               
-              <Button variant="outline" size="lg" className="btn-voice">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="btn-voice min-h-[44px]"
+                onClick={handleCommissionClick}
+              >
                 Commission a Sacred Portrait
               </Button>
             </div>
@@ -90,6 +227,9 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      {showContactModal && <ContactModal />}
     </section>
   );
 };

@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Placeholder Art 1",
+    "image": "/placeholder.svg",
+    "emotion": "Serene",
+    "story": "A tranquil placeholder artwork to ensure the gallery loads correctly.",
+    "category": "Abstract"
+  },
+  {
+    "id": 2,
+    "title": "Placeholder Art 2",
+    "image": "/placeholder.svg",
+    "emotion": "Joyful",
+    "story": "Another placeholder, symbolizing the joy of a working application.",
+    "category": "Modern"
+  }
+]

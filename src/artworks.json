@@ -1,18 +1,114 @@
 [
   {
     "id": 1,
-    "title": "Placeholder Art 1",
-    "image": "/placeholder.svg",
-    "emotion": "Serene",
-    "story": "A tranquil placeholder artwork to ensure the gallery loads correctly.",
-    "category": "Abstract"
+    "title": "The Illuminated Signature",
+    "image": "/lovable-uploads/3caa06e4-be46-41b2-93c9-03c7db376261.png",
+    "emotion": "Elegant",
+    "story": "A single line of gold breathes life into a name, a beacon in the darkness. It whispers of an artist who seeks to bring light to the canvas, to illuminate the world with every stroke.",
+    "category": "Graphic Design"
   },
   {
     "id": 2,
-    "title": "Placeholder Art 2",
-    "image": "/placeholder.svg",
+    "title": "Kaleidoscope of Glee",
+    "image": "/lovable-uploads/56c0cb77-547b-48c5-a487-d0c7844b0caf.png",
     "emotion": "Joyful",
-    "story": "Another placeholder, symbolizing the joy of a working application.",
-    "category": "Modern"
+    "story": "A burst of color captures the essence of pure, unadulterated happiness. This portrait is a reminder of the vibrant spirit that resides within us all, a celebration of life's simple pleasures.",
+    "category": "Contemporary Portrait"
+  },
+  {
+    "id": 3,
+    "title": "Azure Confidence",
+    "image": "/lovable-uploads/92d5dabf-d20c-4acd-b410-677a490a6211.png",
+    "emotion": "Confident",
+    "story": "Bathed in a sea of calming blue, he stands tall, a beacon of self-assuredness. His smile, a silent promise of strength and unwavering resolve.",
+    "category": "Portrait"
+  },
+  {
+    "id": 4,
+    "title": "Ramadan Reflections",
+    "image": "/lovable-uploads/IMG_20250805_104707.webp",
+    "emotion": "Hopeful",
+    "story": "A mannequin stands adorned, a symbol of the season's spirit. Art and attire intertwine, painting a picture of cultural beauty and renewed hope under the soft glow of the crescent moon.",
+    "category": "Contemporary"
+  },
+  {
+    "id": 5,
+    "title": "Radiator Springs Denim Dreams",
+    "image": "/lovable-uploads/IMG_20250805_105148.webp",
+    "emotion": "Playful",
+    "story": "A child's imagination takes the wheel, transforming ordinary denim into a vibrant race track. Each character, splattered with color and joy, revs its engine into a world of pure, unadulterated fun.",
+    "category": "Textile Art"
+  },
+  {
+    "id": 6,
+    "title": "Chromatic Reverie Tee",
+    "image": "/lovable-uploads/IMG_20250805_105752.webp",
+    "emotion": "Vibrant",
+    "story": "A burst of color adorns simple fabric, breathing life into the mundane. The woman emerges from a dream of pink and gold, her gaze both knowing and mysterious, a testament to the beauty found in the unexpected.",
+    "category": "Contemporary"
+  },
+  {
+    "id": 7,
+    "title": "Osun's Golden Gaze",
+    "image": "/lovable-uploads/Screenshot_20250805_124418.webp",
+    "emotion": "Radiant",
+    "story": "She emerges, draped in ivory and gold, a vision of grace and power. Her smile, like the sun's first light, promises abundance and the warm embrace of tradition.",
+    "category": "Portrait"
+  },
+  {
+    "id": 8,
+    "title": "Kaleidoscope Gaze",
+    "image": "/lovable-uploads/cb7449cc-b296-417e-bbec-2b3c2fea257e.png",
+    "emotion": "Intense",
+    "story": "An eye fragmented into moments, each color a different facet of perception. It stares through a prism, reflecting back the complexities of seeing and being seen.",
+    "category": "Abstract"
+  },
+  {
+    "id": 9,
+    "title": "Indigo Confidence",
+    "image": "/lovable-uploads/cletus-prof-pic.png",
+    "emotion": "Confident",
+    "story": "Poised against a backdrop of calming indigo, he stands, a beacon of self-assuredness. His arms crossed, a silent declaration of inner strength, radiating a quiet, unwavering resolve.",
+    "category": "Portrait"
+  },
+  {
+    "id": 10,
+    "title": "Echoes of Gold",
+    "image": "/lovable-uploads/couple 1.webp",
+    "emotion": "Harmonious",
+    "story": "Twin faces etched in gold, reflecting not just images but souls intertwined. Their garments whisper tales of shared heritage, bound by love's enduring lines.",
+    "category": "Contemporary Fashion"
+  },
+  {
+    "id": 11,
+    "title": "Crimson Gaze",
+    "image": "/lovable-uploads/de9457e8-8b9d-4534-9322-a856502caeb0.png",
+    "emotion": "Bold",
+    "story": "She looks out from behind crimson circles, a world seen through a lens of passion and daring. A silent challenge, a statement made in shades of red against the void.",
+    "category": "Contemporary"
+  },
+  {
+    "id": 12,
+    "title": "Untitled 1757398455014",
+    "image": "/lovable-uploads/doodle1.webp",
+    "emotion": "Mysterious",
+    "story": "A captivating digital artwork that invites contemplation and wonder.",
+    "category": "Digital"
+  },
+  {
+    "id": 13,
+    "title": "Untitled 1757398456054",
+    "image": "/lovable-uploads/doodle2.webp",
+    "emotion": "Mysterious",
+    "story": "A captivating digital artwork that invites contemplation and wonder.",
+    "category": "Digital"
+  },
+  {
+    "id": 14,
+    "title": "Untitled 1757398457110",
+    "image": "/lovable-uploads/kids1.webp",
+    "emotion": "Mysterious",
+    "story": "A captivating digital artwork that invites contemplation and wonder.",
+    "category": "Digital"
   }
 ]

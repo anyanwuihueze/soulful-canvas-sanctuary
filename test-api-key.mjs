@@ -21,9 +21,11 @@ console.log("✅ API Key found:", API_KEY.replace(/(.{4}).*(.{4})/, "$1...$2"));
 async function testGemini() {
   try {
     const genAI = new GoogleGenerativeAI(API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-    console.log("📡 Sending test request to Gemini...");
+    // Using gemini-2.5-flash as specified by the user
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+
+    console.log("📡 Sending test request to Gemini using 'gemini-2.5-flash'...");
     const result = await model.generateContent("Say 'Hello from Soulful Canvas' in a poetic way");
     const response = await result.response;
     const text = response.text();

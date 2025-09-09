@@ -1,33 +1,20 @@
+import React, { useState } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Sparkles } from 'lucide-react';
+import artworksData from '@/artworks.json';
 
 const GalleryPage = () => {
-  const artworks = [
-    {
-      id: 1,
-      title: "Vision Through Truth",
-      image: "/lovable-uploads/de9457e8-8b9d-4534-9322-a856502caeb0.png",
-      emotion: "Seeing beyond the surface",
-      story: "Behind these crimson lenses lies a vision that pierces through facades. Every stroke reveals the authentic self beneath society's expectations."
-    },
-    {
-      id: 2,
-      title: "Eternal Gaze",
-      image: "/lovable-uploads/cb7449cc-b296-417e-bbec-2b3c2fea257e.png",
-      emotion: "The soul's observatory",
-      story: "This fragmented eye sees all dimensions of existence. Each panel captures a different spectrum of human experience, united in divine observation."
-    },
-    {
-      id: 3,
-      title: "Joy Unbounded",
-      image: "/lovable-uploads/56c0cb77-547b-48c5-a487-d0c7844b0caf.png",
-      emotion: "Pure euphoria in color",
-      story: "This radiant smile transcends canvas boundaries. Every vibrant hue speaks of hope, resilience, and the beautiful complexity of the human spirit."
-    }
-  ];
+  const [artworks] = useState(artworksData);
+  const [selectedCategory, setSelectedCategory] = useState('All');
+
+  const categories = ['All', ...Array.from(new Set(artworks.map(art => art.category)))];
+
+  const filteredArtworks = selectedCategory === 'All'
+    ? artworks
+    : artworks.filter(artwork => artwork.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-background">
@@ -44,13 +31,21 @@ const GalleryPage = () => {
             </p>
           </div>
 
-          {/* Placeholder for Image Upload */}
-          <div className="text-center mb-12">
-            <Button variant="default" size="lg">Upload New Artwork</Button>
+          {/* Category Filters */}
+          <div className="flex justify-center gap-4 mb-12">
+            {categories.map(category => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? 'default' : 'outline'}
+                onClick={() => setSelectedCategory(category)}
+              >
+                {category}
+              </Button>
+            ))}
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {artworks.map((artwork) => (
+            {filteredArtworks.map((artwork) => (
               <Card key={artwork.id} className="artwork-card group">
                 <div className="relative">
                   <img 

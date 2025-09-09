@@ -1,93 +1,115 @@
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
-import artwork1 from '@/assets/artwork-1.jpg';
-import artwork2 from '@/assets/artwork-2.jpg';
-import artwork3 from '@/assets/artwork-3.jpg';
-import { Sparkles } from 'lucide-react';
+// src/components/GallerySection.tsx - Fixed to load real artworks data
+import { useState, useEffect } from 'react';
+import artworksData from '../artworks.json';
 
-const GallerySection = () => {
-  const artworks = [
-    {
-      id: 1,
-      title: "Vision Through Truth",
-      image: "/lovable-uploads/de9457e8-8b9d-4534-9322-a856502caeb0.png",
-      emotion: "Seeing beyond the surface",
-      story: "Behind these crimson lenses lies a vision that pierces through facades. Every stroke reveals the authentic self beneath society's expectations."
-    },
-    {
-      id: 2,
-      title: "Eternal Gaze",
-      image: "/lovable-uploads/cb7449cc-b296-417e-bbec-2b3c2fea257e.png",
-      emotion: "The soul's observatory",
-      story: "This fragmented eye sees all dimensions of existence. Each panel captures a different spectrum of human experience, united in divine observation."
-    },
-    {
-      id: 3,
-      title: "Joy Unbounded",
-      image: "/lovable-uploads/56c0cb77-547b-48c5-a487-d0c7844b0caf.png",
-      emotion: "Pure euphoria in color",
-      story: "This radiant smile transcends canvas boundaries. Every vibrant hue speaks of hope, resilience, and the beautiful complexity of the human spirit."
-    }
-  ];
+export default function GallerySection() {
+  const [artworks, setArtworks] = useState([]);
+
+  useEffect(() => {
+    // Load the first 6 artworks for homepage preview
+    setArtworks(artworksData.slice(0, 6));
+  }, []);
+
+  // Function to generate gradient backgrounds based on emotion
+  const getGradientForEmotion = (emotion) => {
+    const gradients = {
+      'Elegant': 'from-purple-600 via-pink-600 to-rose-500',
+      'Joyful': 'from-yellow-400 via-orange-500 to-red-500',
+      'Confident': 'from-blue-600 via-purple-600 to-indigo-700',
+      'Hopeful': 'from-green-400 via-blue-500 to-purple-600',
+      'Vibrant': 'from-pink-500 via-red-500 to-yellow-500',
+      'Intense': 'from-red-600 via-purple-600 to-pink-700',
+      'Proud': 'from-amber-500 via-orange-600 to-red-600',
+      'Mysterious': 'from-gray-600 via-purple-700 to-indigo-800',
+      'Serene': 'from-blue-400 via-purple-500 to-pink-500'
+    };
+    
+    return gradients[emotion] || 'from-purple-400 to-pink-400';
+  };
+
+  if (artworks.length === 0) {
+    return (
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-5xl font-bold text-gray-900 mb-4">Featured Gallery</h2>
+          <p className="text-xl text-gray-600">Loading amazing artworks...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
-    <section id="gallery" className="sacred-section bg-gradient-to-b from-background to-secondary/10">
-      <div className="sacred-container">
-        <div className="text-center space-y-6 mb-16">
-          <h2 className="sacred-title">
-            Sacred
-            <span className="block text-primary font-playfair italic">Gallery</span>
-          </h2>
-          <p className="sacred-subtitle max-w-2xl mx-auto">
-            Each portrait is a window into the soul, where hyperrealism meets the abstract language of emotion
+    <section className="py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-gray-900 mb-4">Featured Gallery</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Curated digital masterpieces that speak to the soul
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {artworks.map((artwork) => (
-            <Card key={artwork.id} className="artwork-card group">
-              <div className="relative">
+            <div key={artwork.id} className="group cursor-pointer">
+              <div className="relative overflow-hidden rounded-2xl aspect-square mb-4 shadow-lg transition-all duration-300 group-hover:shadow-2xl group-hover:scale-105">
+                {/* Try to load the actual image first, fallback to gradient */}
                 <img 
                   src={artwork.image} 
                   alt={artwork.title}
-                  className="w-full aspect-square object-cover"
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    // If image fails to load, hide it and show gradient background
+                    e.target.style.display = 'none';
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 
-                <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                  <Button variant="outline" size="sm" className="btn-voice w-full">
-                    <Sparkles className="w-4 h-4 mr-2" />
-                    Voice of the Canvas
-                  </Button>
+                {/* Gradient background (shows if image fails or as overlay) */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${getGradientForEmotion(artwork.emotion)} ${artwork.image && artwork.image.startsWith('/lovable-uploads/') ? 'opacity-20' : 'opacity-90'}`}></div>
+                
+                {/* Content overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white text-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  <h3 className="text-2xl font-bold mb-2 drop-shadow-lg">{artwork.title}</h3>
+                  <p className="text-sm opacity-90 mb-3 drop-shadow capitalize">{artwork.emotion}</p>
+                  <div className="w-16 h-0.5 bg-white/60 mb-3"></div>
+                  <p className="text-sm leading-relaxed drop-shadow">{artwork.story}</p>
+                </div>
+
+                {/* Category badge */}
+                <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs font-medium">
+                  {artwork.category}
+                </div>
+
+                {/* Emotion badge */}
+                <div className="absolute bottom-4 left-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full text-white text-xs font-medium capitalize">
+                  {artwork.emotion}
                 </div>
               </div>
               
-              <div className="p-6 space-y-4">
-                <div>
-                  <h3 className="font-playfair text-2xl font-semibold text-foreground mb-2">
-                    {artwork.title}
-                  </h3>
-                  <p className="text-primary italic font-medium">
-                    {artwork.emotion}
-                  </p>
-                </div>
-                
-                <p className="sacred-text text-sm leading-relaxed">
-                  "{artwork.story}"
+              <div className="space-y-2">
+                <h3 className="font-bold text-lg text-gray-900 group-hover:text-purple-600 transition-colors">
+                  {artwork.title}
+                </h3>
+                <p className="text-gray-600 capitalize text-sm">
+                  {artwork.category} • {artwork.emotion}
+                </p>
+                <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
+                  {artwork.story}
                 </p>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
-          <Button variant="default" size="lg" className="btn-sacred">
-            <span className="relative z-10">View Full Collection</span>
-          </Button>
+          <a 
+            href="/gallery" 
+            className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+          >
+            View Full Gallery ({artworksData.length} Artworks)
+          </a>
         </div>
       </div>
     </section>
   );
-};
-
-export default GallerySection;
+}

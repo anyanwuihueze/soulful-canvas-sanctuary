@@ -1,3 +1,5 @@
+import { Toaster as SonnerToaster } from "sonner";
+
 export function Sonner() {
-  return null;
+  return <SonnerToaster richColors position="top-right" />;
 }
